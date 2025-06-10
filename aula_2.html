@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bancos de Dados - Aula 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="markdownProcessor.js"></script>
+    <script src="aula-component.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <aula-interativa :disciplina="disciplina"></aula-interativa>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      const disciplina = {
+        nome: "Bancos de Dados - Aula 2",
+        icone: "fas fa-database",
+        professores:
+          "Prof. Ricardo Sonaglio Albano & Profª. Silvie Guedes Albano",
+        footer: "Material interativo desenvolvido para facilitar o aprendizado",
+        temas: [
+          {
+            titulo: "Modelo Lógico ou Relacional",
+            icone: "fas fa-table",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-blue-500 to-purple-600",
+            },
+            subtitulo: "Do Conceitual ao Lógico: Organizando os Dados 📊",
+            descricao:
+              "Entenda como converter o Modelo Entidade-Relacionamento para o modelo relacional, aplicando conceitos matemáticos aos bancos de dados.",
+            tags: ["Modelo Relacional", "Álgebra Relacional", "Tabelas"],
+            secoes: [
+              {
+                titulo: "O que é o Modelo Relacional?",
+                icone: "fas fa-lightbulb",
+                conteudo: [
+                  `[destaque:gradient_blue]🏢 O modelo relacional é como um escritório bem organizado!|Imagine um escritório onde cada gaveta (tabela) tem pastas organizadas, cada pasta tem documentos estruturados, e tudo está interconectado de forma lógica.[/destaque]`,
+
+                  `O modelo relacional é adequado para um **Sistema Gerenciador de Bancos de Dados (SGBD) específico**, baseado no princípio de que **todos os dados estão armazenados em tabelas**.
+
+Foi proposto por **Edgar Codd** na década de 1970, aplicando a **teoria dos conjuntos (álgebra relacional)** nas estruturas de dados, permitindo operações como seleção, projeção e atribuição.
+
+**Chris Date e Hugh Darwen** aprimoraram o modelo no "Terceiro Manifesto" (1995), mostrando como estendê-lo com características de orientação a objeto sem comprometer seus princípios fundamentais.`,
+                ],
+              },
+              {
+                titulo: "Componentes do Modelo Relacional",
+                icone: "fas fa-puzzle-piece",
+                conteudo: [
+                  `Um banco de dados relacional é composto de:`,
+
+                  `[grid:md:grid-cols-2]
+                 tag:blue:**Atributos**:Nome de cada coluna da tabela:É como o cabeçalho de uma planilha Excel|
+                 cube:green:**Domínio**:Tipo de dado e valores permitidos:Define se é texto, número, data, etc.|
+                 table:purple:**Tuplas**:Linhas/registros da tabela:Como uma linha de dados na planilha|
+                 database:orange:**Relações**:Conjunto de tuplas formando tabela:A tabela completa com todos os dados
+                 [/grid]`,
+
+                  `[destaque:yellow:left]📋 Exemplo Prático|Na tabela CLIENTE:
+• **Atributo**: "nome", "nascimento", "endereco"
+• **Domínio**: nome VARCHAR(100), nascimento DATE
+• **Tupla**: "João da Silva", "01/01/1980", "Sete de setembro, 1000"
+• **Relação**: Toda a tabela CLIENTE com todos os registros[/destaque]`,
+                ],
+              },
+              {
+                titulo: "Terminologias: Conceitual vs Relacional",
+                icone: "fas fa-exchange-alt",
+                conteudo: [
+                  `[grid:md:grid-cols-3]
+                 lightbulb:blue:**Modelo Conceitual**:• Entidade\n• Campo\n• Registro|
+                 arrow-right:gray:**→**:Conversão|
+                 table:green:**Modelo Relacional**:• Relação\n• Atributo\n• Tupla
+                 [/grid]`,
+
+                  `É a mesma coisa, apenas com **terminologias diferentes**! Como chamar refrigerante de "refri" ou "gelada" - o conceito é o mesmo, só muda o nome.`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Álgebra Relacional",
+            icone: "fas fa-calculator",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-green-500 to-blue-600",
+            },
+            subtitulo: "A Matemática por trás dos Bancos de Dados",
+            descricao:
+              "Descubra como operações matemáticas simples permitem consultar e manipular dados de forma eficiente.",
+            secoes: [
+              {
+                titulo: "O que é Álgebra Relacional?",
+                icone: "fas fa-calculator",
+                conteudo: [
+                  `[destaque:gradient_green]🧮 É como uma calculadora para dados!|A álgebra relacional é uma linguagem formal que define operações para manipular dados em tabelas, similar a como usamos +, -, × e ÷ com números.[/destaque]`,
+
+                  `**Características principais:**
+• Baseada na **teoria dos conjuntos**
+• Análise em **lógica de predicados** (verdadeiro/falso)
+• **Linguagem de consulta formal**
+• Operadores atuam em **relações** (tabelas)
+• Produzem **nova relação** como resultado`,
+                ],
+              },
+              {
+                titulo: "Operadores Relacionais",
+                icone: "fas fa-tools",
+                conteudo: [
+                  `[exp:wrench]**Operadores Unários**|Atuam em uma única relação|**Seleção (σ - sigma)**: Filtra linhas\n**Projeção (π - pi)**: Filtra colunas|Como filtrar dados no Excel: linhas OU colunas|Simples e diretos|Operação rápida[/exp]`,
+
+                  `[exp:link]**Operadores Binários**|Atuam em duas relações|**União**: Junta dados de duas tabelas\n**Diferença**: Remove dados comuns\n**Produto Cartesiano**: Combina todas as possibilidades|Como comparar duas planilhas|Mais complexos|Podem gerar grandes resultados[/exp]`,
+
+                  `[exp:cog]**Operadores Derivados**|Combinações dos anteriores|**Intersecção**: Dados em comum\n**Junção**: Une tabelas relacionadas\n**Divisão**: Operação matemática avançada|Atalhos para operações complexas|Muito utilizados na prática|Facilitam consultas[/exp]`,
+
+                  `[exp:star]**Operadores Especiais**|Específicos do modelo relacional|**Renomeação**: Muda nome de atributos\n**Atribuição (←)**: Salva resultado|Criados especialmente para bancos de dados|Auxiliares importantes|Facilitam organização[/exp]`,
+                ],
+              },
+              {
+                titulo: "Operadores na Prática",
+                icone: "fas fa-play-circle",
+                conteudo: [
+                  `Vamos ver os **3 operadores principais** em ação:`,
+
+                  `[exp:assignment]**Operador de Atribuição (←)**||Redireciona resultado para nova relação|Resultado ← operação|É como salvar um arquivo com nome específico|Sempre usado com outros operadores[/exp]`,
+
+                  `[exp:filter]**Operador de Seleção (σ)**||Seleciona linhas baseado em condição|σ genero = 'M' (cliente)|Filtra HORIZONTALMENTE (linhas)\nOperadores: =, ≠, <, >, ≤, ≥\nLógicos: ∧ (E), ∨ (OU), ¬ (NÃO)|Como usar filtro no Excel|Resultado ← σ genero = 'M' (cliente)[/exp]`,
+
+                  `[exp:columns]**Operador de Projeção (π)**||Seleciona colunas específicas|π nome (cliente)|Filtra VERTICALMENTE (colunas)\nEspecifica quais atributos mostrar|Como ocultar colunas no Excel|π nome (σ genero = 'F' (cliente))[/exp]`,
+
+                  `[destaque:green]✅ Exemplo Completo|**Problema**: Listar apenas os nomes dos clientes do sexo feminino
+**Solução**: π nome (σ genero = 'F' (cliente))
+**Leitura**: "Projete o nome dos clientes onde gênero é igual a F"[/destaque]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Restrições de Integridade",
+            icone: "fas fa-shield-alt",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-purple-500 to-pink-600",
+            },
+            subtitulo: "Protegendo a Qualidade dos Dados",
+            descricao:
+              "Como garantir que os dados sejam sempre consistentes, corretos e confiáveis através de regras bem definidas.",
+            secoes: [
+              {
+                titulo: "Princípio da Informação",
+                icone: "fas fa-info-circle",
+                conteudo: [
+                  `[destaque:gradient_purple]🛡️ O princípio básico: Toda informação é representada por valores nas tabelas|Se um atributo aparece em várias tabelas (chave estrangeira), deve ter o **mesmo domínio** (tipo de dado).[/destaque]`,
+                ],
+              },
+              {
+                titulo: "Tipos de Restrições",
+                icone: "fas fa-list-check",
+                conteudo: [
+                  `[grid:md:grid-cols-2]
+                 link:blue:**Integridade Referencial**:Chaves estrangeiras devem existir:Cliente_cidade_id deve existir na tabela Cidade|
+                 key:green:**Integridade de Chave**:Toda tupla tem identificador único:Chave primária obrigatória em todas as tabelas|
+                 ban:red:**Restrição NOT NULL**:Chaves não podem ser nulas:PK e FK nunca podem estar vazias|
+                 check:purple:**Restrição UNIQUE**:Valores únicos para chaves candidatas:CPF não pode se repetir no sistema
+                 [/grid]`,
+
+                  `[exp:cog]**Restrições de Atributos e Padrões**||Regras específicas para campos|**Default**: Valor padrão quando não informado\n**Check**: Validação de regras de negócio|Se não informar UF, assume 'PR'\nNota deve estar entre 0 e 10\nGênero só aceita 'M' ou 'F'|Evitam dados inconsistentes|Melhoram qualidade dos dados[/exp]`,
+                ],
+              },
+              {
+                titulo: "Chaves no Modelo Relacional",
+                icone: "fas fa-key",
+                conteudo: [
+                  `As **chaves** são fundamentais para conectar tabelas:`,
+
+                  `[exp:key]**Chave Composta**||Mais de um atributo formando a chave|Deriva de relacionamentos N:N (muitos para muitos)|Tabela PedidoProduto: pedido_id + produto_id|Comum em entidades associativas|Pode usar Surrogate Key (ID artificial) para simplificar[/exp]`,
+
+                  `[destaque:yellow]💡 Dica: Surrogate Key|O famoso **"id"** (identificador) é uma chave artificial que simplifica a implementação:
+• Elemento único
+• Facilita implementação no modelo físico  
+• Muito usado na prática[/destaque]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Normalização",
+            icone: "fas fa-balance-scale",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-amber-500 to-orange-500",
+            },
+            subtitulo: "Refinando a Estrutura dos Dados",
+            descricao:
+              "O processo essencial para eliminar redundâncias e garantir a qualidade da estrutura do banco de dados.",
+            secoes: [
+              {
+                titulo: "O que é Normalização?",
+                icone: "fas fa-tools",
+                conteudo: [
+                  `[destaque:gradient_yellow]🔧 Normalização é como uma revisão detalhada do projeto!|Imagine revisar o projeto de uma casa para eliminar desperdícios, melhorar a organização e garantir que tudo funcione perfeitamente.[/destaque]`,
+
+                  `**Objetivos da normalização:**
+• **Minimizar o espaço** utilizado pelos dados
+• **Garantir integridade** e confiabilidade
+• **Eliminar redundâncias** e inconsistências
+• **Melhorar a manipulação** do banco de dados`,
+
+                  `O processo aplica **Formas Normais (FN)** sequencialmente. Na prática, usamos apenas as **3 primeiras Formas Normais** - suficientes para resolver a maioria dos problemas.`,
+                ],
+              },
+              {
+                titulo: "Problemas sem Normalização",
+                icone: "fas fa-exclamation-triangle",
+                conteudo: [
+                  `Vamos ver os problemas usando uma tabela **FUNCIONÁRIO** mal estruturada:`,
+
+                  `[grid:md:grid-cols-3]
+                 trash:red:**Anomalia de Exclusão**:Se excluir João da Silva, o departamento RH desaparece!|
+                 edit:yellow:**Anomalia de Alteração**:Para mudar nome do departamento, precisa alterar várias linhas|
+                 plus:green:**Anomalia de Inclusão**:Cargo "Desenvolvedor" vs "Desenvolvedor Python" - inconsistência!
+                 [/grid]`,
+                ],
+              },
+              {
+                titulo: "Primeira Forma Normal (1FN)",
+                icone: "fas fa-one",
+                conteudo: [
+                  `[destaque:blue]🎯 Objetivo: Eliminar grupos repetitivos e garantir identificação única[/destaque]`,
+
+                  `**Regras da 1FN:**
+• Cada tupla deve ter um **identificador único** (chave primária)
+• Todos os domínios devem ter **valores atômicos** (não repetitivos)`,
+
+                  `[exp:wrench]**Aplicando 1FN na tabela Funcionário**||Correções necessárias|**1.** Adicionar chave primária (id)\n**2.** Separar departamento em nova tabela\n**3.** Separar cargo em nova tabela\n**4.** Criar tabela associativa para habilidades (N:N)|Funcionário → Departamento (1:N)\nFuncionário → Cargo (1:N)\nFuncionário ↔ Habilidade (N:N)|Elimina dados repetitivos|De 1 tabela surgem 5 tabelas organizadas[/exp]`,
+
+                  `**Resultado:** Dados mais íntegros, baixa redundância, estrutura organizada.`,
+                ],
+              },
+              {
+                titulo: "Segunda Forma Normal (2FN)",
+                icone: "fas fa-two",
+                conteudo: [
+                  `[destaque:green]🎯 Objetivo: Eliminar dependências parciais da chave primária[/destaque]`,
+
+                  `**Regras da 2FN:**
+• Estar em conformidade com **1FN**
+• **Não ter atributos** dependentes de **parte** da chave primária`,
+
+                  `[exp:table]**Exemplo: Tabela VENDA com chave composta**||Problema identificado|**Chave Primária Composta**: pedidoId + produtoId\n**Problema**: descrição depende só de produtoId\n**Solução**: Remover descrição e criar tabela PRODUTO|Atributo não depende de TODA a chave|Gera problemas de manutenção|Solução: nova tabela independente[/exp]`,
+
+                  `**Aplicação:** Se não há chaves compostas no modelo, **automaticamente está na 2FN**.`,
+                ],
+              },
+              {
+                titulo: "Terceira Forma Normal (3FN)",
+                icone: "fas fa-three",
+                conteudo: [
+                  `[destaque:purple]🎯 Objetivo: Eliminar dependências transitivas[/destaque]`,
+
+                  `**Regras da 3FN:**
+• Estar em conformidade com **2FN**  
+• **Não ter atributos** dependentes de outros atributos **não-chave**`,
+
+                  `[exp:calculator]**Exemplo: Campo calculado "total"**||Dependência transitiva identificada|**Campo "total"** = quantidade × valorUnitario\n**Problema**: total depende de campos não-chave\n**Solução**: Eliminar campo total da tabela|Valores derivados não devem ser armazenados|Podem ser calculados quando necessário|Evita inconsistências[/exp]`,
+
+                  `[destaque:green]✅ Boa Prática|**Evite criar atributos derivados** nas tabelas. É melhor calcular quando necessário do que armazenar valores que podem ficar inconsistentes.[/destaque]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Modelo Físico",
+            icone: "fas fa-server",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-teal-500 to-cyan-600",
+            },
+            subtitulo: "A Implementação Real do Banco",
+            descricao:
+              "Como converter o modelo lógico para a implementação física no SGBD escolhido.",
+            secoes: [
+              {
+                titulo: "Do Lógico ao Físico",
+                icone: "fas fa-arrow-right",
+                conteudo: [
+                  `[destaque:gradient_teal]🏗️ É a fase de construção real!|Como sair da planta da casa (modelo lógico) para a construção física com tijolos, cimento e materiais reais (SGBD específico).[/destaque]`,
+
+                  `**Características do Modelo Físico:**
+• Considera **limitações do SGBD** escolhido (MySQL, Oracle, SQL Server...)
+• Define **esquemas** para agrupar tabelas
+• Cria **restrições** (chaves primárias e estrangeiras)
+• Implementa **índices**, **gatilhos** e **procedimentos**
+• Otimiza **performance** e **armazenamento**`,
+                ],
+              },
+              {
+                titulo: "Arquivo Físico vs Lógico",
+                icone: "fas fa-hdd",
+                conteudo: [
+                  `[grid:md:grid-cols-2]
+                 table:blue:**Visão Lógica (Usuário)**:Várias tabelas organizadas:Cliente, Produto, Pedido...|
+                 hdd:green:**Realidade Física (Disco)**:Arquivo único no disco:Todos os dados em um arquivo + dicionário de dados
+                 [/grid]`,
+
+                  `**Componentes do arquivo físico:**
+• **Dados propriamente ditos**
+• **Dicionário de dados** (metadados)
+• **Arquivo de log** das transações
+• **Índices** para performance`,
+
+                  `[destaque:yellow]👨‍💼 Papel do DBA|O **Database Administrator** gerencia:
+• Espaço em disco
+• Alocação de arquivos  
+• Índices e performance
+• Backup e recuperação[/destaque]`,
+                ],
+              },
+              {
+                titulo: "Terminologias Unificadas",
+                icone: "fas fa-language",
+                conteudo: [
+                  `[grid:md:grid-cols-3]
+                 lightbulb:blue:**Modelo Conceitual**:• Entidade\n• Campo\n• Registro|
+                 table:green:**Modelo Relacional**:• Relação\n• Atributo\n• Tupla|
+                 server:purple:**Modelo Físico**:• Tabela\n• Coluna\n• Linha
+                 [/grid]`,
+
+                  `**Mesmo conceito, nomes diferentes!** Como chamar a mesma bebida de "refrigerante", "refri" ou "gelada" - depende do contexto.`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Schemas e Modelagem Dimensional",
+            icone: "fas fa-cube",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-indigo-500 to-blue-600",
+            },
+            subtitulo: "Modelos Especiais para Business Intelligence",
+            descricao:
+              "Conheça outros tipos de modelagem utilizados em Data Warehouse e Business Intelligence.",
+            secoes: [
+              {
+                titulo: "Modelagem Dimensional",
+                icone: "fas fa-cubes",
+                conteudo: [
+                  `[destaque:gradient_blue]📊 Diferente do modelo relacional tradicional!|Enquanto modelos relacionais eliminam redundância, modelos dimensionais são **desnormalizados** e otimizados para **análises** e **relatórios**.[/destaque]`,
+
+                  `**Propostas diferentes:**
+• **Modelo Relacional**: Elimina redundância, otimiza inserção/atualização
+• **Modelo Dimensional**: Aceita redundância, otimiza consultas analíticas`,
+
+                  `**Aplicações:**
+• **Data Warehouse** (armazém de dados)
+• **Data Mart** (área específica de negócio)  
+• **Business Intelligence** (BI)
+• **Relatórios gerenciais**`,
+                ],
+              },
+              {
+                titulo: "Dimensões e Fatos",
+                icone: "fas fa-chart-bar",
+                conteudo: [
+                  `[grid:md:grid-cols-2]
+                 tag:blue:**Tabela Dimensão**:Descrevem e classificam os fatos:Atributos textuais (nome, cidade, categoria)\nExemplo: dim_cliente, dim_produto|
+                 chart-bar:green:**Tabela Fato**:Medidas do negócio:Dados numéricos e aditivos\nExemplo: valor_venda, quantidade_vendida
+                 [/grid]`,
+
+                  `[destaque:yellow]🎯 Analogia do Cubo|Imagine um **cubo mágico** onde cada face representa uma **dimensão** (cliente, produto, tempo) e o centro contém os **fatos** (vendas). Você pode "girar" o cubo para ver as vendas de diferentes ângulos![/destaque]`,
+                ],
+              },
+              {
+                titulo: "Tipos de Schema Dimensional",
+                icone: "fas fa-star",
+                conteudo: [
+                  `[exp:star]**Modelo Estrela (Star Schema)**||Todas as dimensões ligam diretamente ao fato|Dimensões desnormalizadas, podem ter redundância|Como uma estrela: fato no centro, dimensões nas pontas|Consultas simples e rápidas|Ocupa mais espaço[/exp]`,
+
+                  `[exp:snowflake]**Modelo Floco de Neve (Snow Flake)**||Dimensões podem se relacionar entre si|Dados mais normalizados, menos redundância|Como flocos de neve: estrutura ramificada|Economia de espaço|Consultas mais complexas[/exp]`,
+
+                  `[exp:constellation]**Modelo Constelação (Fact Constellation)**||Múltiplas tabelas fato no mesmo modelo|Diferentes níveis de detalhamento (granularidade)|Como uma constelação: várias "estrelas"|Vendas diárias E vendas mensais na mesma base|Reduz tempo de resposta[/exp]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Introdução ao SQL",
+            icone: "fas fa-code",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-orange-400 to-red-500",
+            },
+            subtitulo: "A Linguagem Universal dos Bancos de Dados",
+            descricao:
+              "Primeiro contato com a Structured Query Language - a linguagem que conversa com qualquer banco de dados.",
+            secoes: [
+              {
+                titulo: "O que é SQL?",
+                icone: "fas fa-comment",
+                conteudo: [
+                  `[destaque:gradient_red]💬 SQL é a linguagem universal dos bancos de dados!|Não importa se você programa em Python, Java, PHP ou qualquer outra linguagem - para "conversar" com o banco de dados, você sempre usará SQL.[/destaque]`,
+
+                  `**História do SQL:**
+• **IBM** desenvolveu o primeiro SQL (década de 1970)
+• **Edgar Codd** (criador do modelo relacional) era funcionário da IBM
+• Cada empresa criou sua **distribuição própria**
+• **ANSI** criou padrão em 1986 para unificar
+• **ISO** se juntou à ANSI para dar credibilidade`,
+
+                  `**Evolução constante:**
+• **1999**: tipo boolean, comando savepoint
+• **2003**: comando merge, tipo bigint, sequence
+• **2006**: suporte ao XML
+• **2016**: extensão JSON`,
+                ],
+              },
+              {
+                titulo: "Divisões do SQL",
+                icone: "fas fa-layer-group",
+                conteudo: [
+                  `[grid:md:grid-cols-2]
+                 wrench:blue:**DDL - Data Definition**:Criar estruturas:CREATE, ALTER, DROP, TRUNCATE\n"Construir as gavetas"|
+                 edit:green:**DML - Data Manipulation**:Manipular dados:INSERT, UPDATE, DELETE, MERGE\n"Organizar o conteúdo"|
+                 search:purple:**DQL - Data Query**:Consultar dados:SELECT\n"Procurar informações"|
+                 shield-alt:red:**DCL - Data Control**:Controlar acesso:GRANT, REVOKE\n"Dar ou tirar permissões"|
+                 sync:yellow:**DTL - Data Transaction**:Gerenciar transações:COMMIT, ROLLBACK, SAVEPOINT\n"Confirmar ou cancelar operações"
+                 [/grid]`,
+                ],
+              },
+              {
+                título: "Query e Scripts",
+                icone: "fas fa-file-code",
+                conteudo: [
+                  `[destaque:green]📝 Query = Pergunta ao banco de dados|Uma **query** é como fazer uma pergunta ao banco: "Me mostra todos os clientes do Rio de Janeiro" ou "Qual foi a venda total de ontem?"[/destaque]`,
+
+                  `**Características das queries:**
+• Cada comando termina com **ponto e vírgula (;)**
+• Pode ter **uma ou várias instruções**
+• Permite **comentários** com \`--\` ou \`/* */\`
+• Executada por **interfaces gráficas** (MySQL Workbench, etc.)`,
+
+                  `**Exemplo prático:**
+\`\`\`sql
+USE delivery;  -- Seleciona o banco de dados
+INSERT INTO cliente VALUES (1, 'João', 'M');  -- Insere dados
+SELECT * FROM cliente WHERE genero = 'M';     -- Consulta dados
+\`\`\``,
+                ],
+              },
+              {
+                titulo: "Dialetos e SGBDs",
+                icone: "fas fa-language",
+                conteudo: [
+                  `**SQL ANSI** é o padrão, mas cada SGBD tem seu **dialeto** (extensões):`,
+
+                  `[grid:md:grid-cols-3]
+                 database:blue:**MySQL/Oracle**:PL/SQL|
+                 database:red:**SQL Server**:T-SQL (Transact-SQL)|
+                 database:green:**PostgreSQL**:PL/pgSQL|
+                 database:purple:**IBM DB2**:SQL/PL|
+                 database:orange:**Firebird**:PSQL|
+                 database:gray:**Base ANSI**:SQL padrão
+                 [/grid]`,
+
+                  `[destaque:yellow]🗣️ Analogia dos Dialetos|É como português brasileiro vs português europeu - a base é a mesma, mas cada "região" (SGBD) tem suas particularidades e expressões próprias![/destaque]`,
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      // Certifica que o markdownProcessor está disponível
+      if (!window.markdownProcessor) {
+        console.error("markdownProcessor não foi carregado");
+      }
+
+      // Certifica que o componente está disponível
+      if (!window.AulaInterativa) {
+        console.error("AulaInterativa não foi carregado");
+      }
+
+      createApp({
+        data() {
+          return { disciplina };
+        },
+        components: {
+          "aula-interativa": window.AulaInterativa,
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

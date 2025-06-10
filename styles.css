@@ -1,0 +1,625 @@
+/* Animações */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Animações de Elementos */
+.bounce {
+  animation: bounce 0.6s ease-in-out;
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.pulse-success {
+  animation: pulse-success 1s ease-in-out;
+}
+
+.pulse-error {
+  animation: pulse-error 1s ease-in-out;
+}
+
+/* Animações Keyframes */
+@keyframes bounce {
+  0%,
+  20%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes pulse-success {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes pulse-error {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Classes de Layout */
+.quiz-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 41, 55, 0.1),
+    0 1.5px 4px 0 rgba(31, 41, 55, 0.04);
+  padding: 2rem;
+}
+
+.quiz-header {
+  background: linear-gradient(to right, #2563eb, #8b5cf6);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+}
+
+/* Classes de Botões */
+.btn-primary {
+  background: linear-gradient(to right, #2563eb, #8b5cf6);
+  color: #fff;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.15);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right, #1d4ed8, #7c3aed);
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background: #4b5563;
+  color: #fff;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(31, 41, 55, 0.1);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #374151;
+  transform: scale(1.05);
+}
+
+.btn-success {
+  background: linear-gradient(to right, #16a34a, #14b8a6);
+  color: #fff;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(16, 185, 129, 0.15);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.btn-success:hover {
+  background: linear-gradient(to right, #15803d, #0d9488);
+  transform: scale(1.05);
+}
+
+/* Classes de Status */
+.status-success {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+}
+
+.status-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+/* Classes de Progresso */
+.progress-container {
+  width: 100%;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.75rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  transition: width 0.5s;
+}
+
+/* Classes de Resultado */
+.result-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-circle {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem auto;
+}
+
+/* Classes de Confetti */
+.confetti {
+  @apply fixed inset-0 pointer-events-none z-50;
+}
+
+.confetti-piece {
+  @apply absolute w-2 h-2;
+}
+
+/* Classes de Opções de Resposta */
+.option-button {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid #d1d5db;
+  background: #fff;
+  transition: border 0.3s, background 0.3s, transform 0.3s;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option-button:hover:enabled {
+  border-color: #2563eb;
+  background: #eff6ff;
+  transform: scale(1.02);
+}
+
+.option-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.option-letter {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* Estados das opções */
+.option-correct {
+  border-color: #22c55e !important;
+  background: #dcfce7 !important;
+  animation: pulse-success 1s;
+}
+
+.option-wrong {
+  border-color: #ef4444 !important;
+  background: #fee2e2 !important;
+  animation: pulse-error 1s;
+}
+
+.option-disabled {
+  background: #f3f4f6 !important;
+  opacity: 0.6;
+}
+
+.letter-correct {
+  background: #22c55e !important;
+  color: #fff !important;
+}
+
+.letter-wrong {
+  background: #ef4444 !important;
+  color: #fff !important;
+}
+
+.letter-disabled {
+  background: #d1d5db !important;
+  color: #6b7280 !important;
+}
+
+/* Classes de Mensagens */
+.message-container {
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.message-primary {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.message-secondary {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Classes de Ícones */
+.icon-circle {
+  width: 3rem;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Classes de Gradientes */
+.gradient-primary {
+  background: linear-gradient(to right, #2563eb, #8b5cf6);
+}
+
+.gradient-success {
+  background: linear-gradient(to right, #4ade80, #22c55e);
+}
+
+.gradient-warning {
+  background: linear-gradient(to right, #fde047, #f59e42);
+}
+
+.gradient-error {
+  background: linear-gradient(to right, #f87171, #ef4444);
+}
+
+/* Classes de Benefícios */
+.quiz-benefits-row {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: stretch;
+  margin-bottom: 2rem;
+  flex-wrap: nowrap;
+}
+
+.quiz-benefit-card {
+  flex: 1 1 0;
+  min-width: 200px;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 1rem;
+  padding: 1.2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.benefit-blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+.benefit-green {
+  background: #ecfdf5;
+  color: #059669;
+}
+.benefit-purple {
+  background: #f5f3ff;
+  color: #a21caf;
+}
+.benefit-title {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+.benefit-desc {
+  font-size: 0.95rem;
+}
+
+/* Animação do confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: #f39c12;
+  animation: confetti-fall 3s linear infinite;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+/* Classes utilitárias adicionais */
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0.75rem;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 1rem;
+}
+
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.75rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.ml-3 {
+  margin-left: 0.75rem;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.mr-1 {
+  margin-right: 0.25rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+/* Classes de layout */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+.max-w-4xl {
+  max-width: 56rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Estilização para listas processadas */
+.processed-list ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.processed-list li {
+  margin-bottom: 0.25rem;
+}
+
+.processed-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Classes para controle de alinhamento de listas */
+.text-left-list ul,
+.text-left-list ol,
+.text-left-list .processed-list {
+  text-align: left;
+}
+
+.text-left-list .grid > div {
+  text-align: left;
+}
+
+/* Classes específicas para diferentes tipos de alinhamento */
+.align-left {
+  text-align: left !important;
+}
+
+.align-center {
+  text-align: center !important;
+}
+
+.align-justify {
+  text-align: justify !important;
+}
+
+/* Melhorias para listas dentro de grids */
+.grid-left-align > div {
+  text-align: left;
+}
+
+.grid-center-align > div {
+  text-align: center;
+}
+
+/* Classes para listas em exemplos práticos */
+.example-list {
+  text-align: left;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #007bff;
+}
+
+.example-list ul,
+.example-list ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.definition-list {
+  text-align: left;
+}
+
+.definition-list .definition-term {
+  font-weight: bold;
+  color: #495057;
+  margin-top: 0.5rem;
+}
+
+.definition-list .definition-desc {
+  margin-left: 1rem;
+  color: #6c757d;
+}
+
+/* Classe para destaques com conteúdo alinhado à esquerda */
+.destaque-content-left {
+  text-align: center; /* Mantém título e ícone centralizados */
+}
+
+.destaque-content-left .destaque-items {
+  text-align: left; /* Alinha apenas o conteúdo à esquerda */
+  display: inline-block; /* Permite centralizar o bloco de texto à esquerda */
+  max-width: 100%;
+}
+
+.destaque-content-left .destaque-items ul {
+  text-align: left;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.destaque-content-left .destaque-items li {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+/* Variação para diferentes cores mantendo o mesmo comportamento */
+.destaque-yellow-left {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+}
+
+.destaque-blue-left {
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+}
+
+.destaque-green-left {
+  background: #d1fae5;
+  border: 1px solid #6ee7b7;
+}
+
+/* Classe para destaques com conteúdo alinhado à esquerda */
+.destaque-content-left {
+  text-align: center; /* Mantém título e ícone centralizados */
+}
+
+.destaque-content-left .destaque-items {
+  text-align: left; /* Alinha apenas o conteúdo à esquerda */
+  display: inline-block; /* Permite centralizar o bloco de texto à esquerda */
+  max-width: 100%;
+}
+
+.destaque-content-left .destaque-items ul {
+  text-align: left;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.destaque-content-left .destaque-items li {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.destaque-content-left .destaque-items li:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz Banco de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="markdownProcessor.js"></script>
+    <script src="quiz-component.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <quiz-interativo :tema="tema"></quiz-interativo>
+    </div>
+    <script>
+      const tema = {
+        nome: "Banco de Dados",
+        icone: "fas fa-database",
+        cor: "#3B82F6",
+        descricao:
+          "Teste seus conhecimentos sobre fundamentos de banco de dados",
+        tempo: "Tempo livre",
+        questoes: [
+          {
+            categoria: "Conceitos Fundamentais",
+            dificuldade: 1,
+            icone: "fas fa-book",
+            pergunta: "Qual é a principal diferença entre dado e informação?",
+            opcoes: [
+              "Não há diferença, são sinônimos",
+              "Dado é processado, informação é bruta",
+              "Informação é o resultado do processamento de dados",
+              "Dados são mais importantes que informações",
+            ],
+            respostaCorreta: 2,
+            explicacao:
+              "Informação é um conjunto de dados organizados de forma significativa que adquirem valor adicional. Como no exemplo: 2 + 5 são dados, mas 7 é a informação resultante.",
+          },
+          {
+            categoria: "Modelos de Banco de Dados",
+            dificuldade: 2,
+            icone: "fas fa-project-diagram",
+            pergunta:
+              "Qual modelo de banco de dados organiza os dados em estrutura de árvore com relações pai-filho?",
+            opcoes: [
+              "Modelo Relacional",
+              "Modelo Hierárquico",
+              "Modelo de Rede",
+              "Modelo NoSQL",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "O modelo hierárquico, surgido na década de 1960, organiza dados em estrutura de árvore partindo de um nó raiz, criando relações pai-filho entre classes de dados.",
+          },
+          {
+            categoria: "SGBD",
+            dificuldade: 1,
+            icone: "fas fa-cogs",
+            pergunta: "O que significa a sigla SGBD?",
+            opcoes: [
+              "Sistema Geral de Busca de Dados",
+              "Sistema Gerenciador de Banco de Dados",
+              "Sistema Gráfico de Base de Dados",
+              "Sistema Global de Busca Dinâmica",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "SGBD significa Sistema Gerenciador de Banco de Dados. É o software que faz a interface entre os dados armazenados e os usuários/aplicações que querem acessá-los.",
+          },
+          {
+            categoria: "Características do SGBD",
+            dificuldade: 2,
+            icone: "fas fa-shield-alt",
+            pergunta:
+              "Qual característica do SGBD evita que a mesma informação seja armazenada em locais diferentes?",
+            opcoes: [
+              "Controle de acesso",
+              "Controle de redundância",
+              "Controle de transações",
+              "Backup e recuperação",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "O controle de redundância evita duplicação desnecessária de dados, mantendo as informações em um único local e evitando inconsistências.",
+          },
+          {
+            categoria: "Modelagem de Dados",
+            dificuldade: 2,
+            icone: "fas fa-drafting-compass",
+            pergunta:
+              "Qual é a ordem correta das etapas de modelagem de dados?",
+            opcoes: [
+              "Físico → Lógico → Conceitual → Requisitos",
+              "Requisitos → Conceitual → Lógico → Físico",
+              "Conceitual → Requisitos → Físico → Lógico",
+              "Lógico → Conceitual → Requisitos → Físico",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A ordem correta é: Análise de Requisitos, Modelo Conceitual, Modelo Lógico e Modelo Físico. Cada etapa refina mais os detalhes técnicos.",
+          },
+          {
+            categoria: "Modelo Conceitual",
+            dificuldade: 1,
+            icone: "fas fa-lightbulb",
+            pergunta: "O modelo conceitual é independente de qual aspecto?",
+            opcoes: [
+              "Das regras de negócio",
+              "Das entidades principais",
+              "Do tipo de SGBD escolhido",
+              "Dos relacionamentos",
+            ],
+            respostaCorreta: 2,
+            explicacao:
+              "O modelo conceitual é independente do SGBD, focando apenas nas regras de negócio e na visão geral dos dados, sem preocupações técnicas de implementação.",
+          },
+          {
+            categoria: "Entidades",
+            dificuldade: 2,
+            icone: "fas fa-cube",
+            pergunta:
+              "Qual tipo de entidade depende existencialmente de outra entidade para existir?",
+            opcoes: [
+              "Entidade fundamental",
+              "Entidade associativa",
+              "Entidade fraca",
+              "Entidade primária",
+            ],
+            respostaCorreta: 2,
+            explicacao:
+              "A entidade fraca depende existencialmente de outra entidade. Por exemplo, 'Dependente' só existe se houver 'Funcionário'. Se eliminarmos o funcionário, o dependente também desaparece.",
+          },
+          {
+            categoria: "Chaves",
+            dificuldade: 2,
+            icone: "fas fa-key",
+            pergunta: "Qual é a principal função da chave primária?",
+            opcoes: [
+              "Conectar tabelas diferentes",
+              "Identificar unicamente cada registro",
+              "Acelerar consultas no banco",
+              "Validar dados de entrada",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A chave primária identifica unicamente cada instância (registro) da entidade, garantindo que não existam duas linhas idênticas na tabela.",
+          },
+          {
+            categoria: "Cardinalidade",
+            dificuldade: 3,
+            icone: "fas fa-arrows-alt",
+            pergunta:
+              "Em um relacionamento 1:N, onde deve ficar a chave estrangeira?",
+            opcoes: [
+              "Na entidade do lado 1",
+              "Na entidade do lado N",
+              "Em ambas as entidades",
+              "Em uma tabela separada",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A chave estrangeira sempre fica na entidade do lado N (muitos). Por exemplo, na relação Cidade (1) - Cliente (N), o código da cidade fica na tabela Cliente.",
+          },
+          {
+            categoria: "Cardinalidade",
+            dificuldade: 2,
+            icone: "fas fa-heart",
+            contexto:
+              "Considerando o casamento monogâmico brasileiro onde uma pessoa só pode estar casada com uma outra pessoa ao mesmo tempo.",
+            pergunta:
+              "Qual seria a cardinalidade entre as entidades Pessoa e Cônjuge?",
+            opcoes: [
+              "1:N (um para muitos)",
+              "N:N (muitos para muitos)",
+              "1:1 (um para um)",
+              "N:1 (muitos para um)",
+            ],
+            respostaCorreta: 2,
+            explicacao:
+              "No casamento monogâmico, UMA pessoa tem UM cônjuge e UM cônjuge pertence a UMA pessoa, caracterizando um relacionamento 1:1 (um para um).",
+          },
+          {
+            categoria: "Relacionamento N:N",
+            dificuldade: 3,
+            icone: "fas fa-network-wired",
+            pergunta:
+              "O que acontece quando temos um relacionamento N:N (muitos para muitos)?",
+            opcoes: [
+              "Não é possível implementar no banco relacional",
+              "Deve-se criar uma entidade associativa",
+              "A chave estrangeira fica em ambas as tabelas",
+              "O relacionamento permanece como está",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "Relacionamentos N:N sempre geram uma nova entidade associativa. Por exemplo, Cliente-Conta vira ClienteConta, contendo as chaves primárias de ambas as entidades originais.",
+          },
+          {
+            categoria: "Tipos de Campos",
+            dificuldade: 2,
+            icone: "fas fa-tags",
+            pergunta:
+              "Um campo que pode ter múltiplos valores para uma mesma instância é chamado de:",
+            opcoes: [
+              "Campo obrigatório",
+              "Campo composto",
+              "Campo multivalorado",
+              "Campo derivado",
+            ],
+            respostaCorreta: 2,
+            explicacao:
+              "Campo multivalorado pode ter múltiplos valores. Por exemplo, uma pessoa pode ter vários números de telefone ou vários e-mails de contato.",
+          },
+          {
+            categoria: "Estudo de Caso",
+            dificuldade: 3,
+            icone: "fas fa-utensils",
+            contexto:
+              "No sistema de delivery 'Comer é Bom Demais', um pedido pode conter vários produtos e um produto pode estar em vários pedidos.",
+            pergunta:
+              "Como deve ser modelado o relacionamento entre Pedido e Produto?",
+            opcoes: [
+              "Relacionamento 1:N direto",
+              "Relacionamento N:N com entidade associativa PedidoProduto",
+              "Relacionamento 1:1 simples",
+              "Sem relacionamento direto",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "Como é N:N, deve-se criar a entidade associativa PedidoProduto contendo as chaves de Pedido e Produto, além de campos como quantidade, valor unitário e desconto.",
+          },
+          {
+            categoria: "Regras de Negócio",
+            dificuldade: 2,
+            icone: "fas fa-gavel",
+            pergunta: "Qual afirmação melhor define regras de negócio?",
+            opcoes: [
+              "São restrições técnicas do SGBD",
+              "São orientações que regulam as operações da empresa",
+              "São comandos SQL de criação de tabelas",
+              "São tipos de dados permitidos nos campos",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "Regras de negócio são orientações e restrições que servem como reguladoras das operações de uma empresa, fornecidas pelo solicitante ou contratante do sistema.",
+          },
+          {
+            categoria: "Normalização",
+            dificuldade: 3,
+            icone: "fas fa-balance-scale",
+            pergunta:
+              "Em qual etapa da modelagem é aplicada a normalização até a 3ª forma normal?",
+            opcoes: [
+              "Modelo conceitual",
+              "Modelo lógico",
+              "Modelo físico",
+              "Análise de requisitos",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A normalização até a 3ª forma normal é aplicada no modelo lógico, que define chaves primárias, relacionamentos e adequação ao padrão de nomenclatura do SGBD.",
+          },
+        ],
+      };
+
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return { tema };
+        },
+        components: { QuizInterativo: window.QuizInterativo },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

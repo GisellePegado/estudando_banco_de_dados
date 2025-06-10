@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz Banco de Dados - Aula 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="markdownProcessor.js"></script>
+    <script src="quiz-component.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <quiz-interativo :tema="tema"></quiz-interativo>
+    </div>
+    <script>
+      const tema = {
+        nome: "Banco de Dados - Aula 2",
+        icone: "fas fa-server",
+        cor: "#8B5CF6",
+        descricao:
+          "Teste seus conhecimentos sobre modelo relacional, normalização e SQL",
+        tempo: "Tempo livre",
+        questoes: [
+          {
+            categoria: "Modelo Relacional",
+            dificuldade: 1,
+            icone: "fas fa-table",
+            pergunta:
+              "No modelo relacional, como são chamadas as linhas de uma tabela?",
+            opcoes: ["Atributos", "Tuplas", "Domínios", "Relações"],
+            respostaCorreta: 1,
+            explicacao:
+              "No modelo relacional, as linhas são chamadas de tuplas, enquanto as colunas são chamadas de atributos. Essa terminologia é diferente do modelo conceitual.",
+          },
+          {
+            categoria: "Álgebra Relacional",
+            dificuldade: 2,
+            icone: "fas fa-calculator",
+            pergunta:
+              "Qual operador da álgebra relacional é representado pelo símbolo σ (sigma)?",
+            opcoes: ["Projeção", "Seleção", "Atribuição", "União"],
+            respostaCorreta: 1,
+            explicacao:
+              "O operador de seleção é representado pelo símbolo σ (sigma) e seleciona um subconjunto de tuplas baseado em uma condição. A projeção é representada por π (pi).",
+          },
+          {
+            categoria: "Álgebra Relacional",
+            dificuldade: 2,
+            icone: "fas fa-filter",
+            pergunta:
+              "O operador de projeção na álgebra relacional executa filtros em qual direção?",
+            opcoes: [
+              "Horizontal (filtro de linhas)",
+              "Vertical (filtro de colunas)",
+              "Diagonal",
+              "Circular",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "O operador de projeção (π) executa filtros verticais, ou seja, seleciona colunas específicas. O operador de seleção (σ) executa filtros horizontais (linhas).",
+          },
+          {
+            categoria: "Normalização",
+            dificuldade: 1,
+            icone: "fas fa-compress-alt",
+            pergunta:
+              "Qual é o principal objetivo da normalização em bancos de dados?",
+            opcoes: [
+              "Aumentar a velocidade das consultas",
+              "Minimizar redundâncias e inconsistências",
+              "Reduzir o número de tabelas",
+              "Aumentar o tamanho do banco",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A normalização tem como objetivo minimizar redundâncias e inconsistências nos dados, garantindo a integridade e melhorando a manipulação do banco de dados.",
+          },
+          {
+            categoria: "Primeira Forma Normal",
+            dificuldade: 2,
+            icone: "fas fa-layer-group",
+            pergunta:
+              "Para que uma tabela esteja na Primeira Forma Normal (1FN), ela deve:",
+            opcoes: [
+              "Ter chave estrangeira",
+              "Não ter grupos repetitivos e ter identificador único",
+              "Estar normalizada até a 3FN",
+              "Ter apenas dados numéricos",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A 1FN exige que todos os domínios tenham valores atômicos (não repetitivos) e que cada tupla tenha um identificador único (chave primária).",
+          },
+          {
+            categoria: "Segunda Forma Normal",
+            dificuldade: 3,
+            icone: "fas fa-key",
+            pergunta:
+              "A Segunda Forma Normal (2FN) aplica-se especialmente a tabelas com:",
+            opcoes: [
+              "Chave primária simples",
+              "Chave primária composta",
+              "Sem chave primária",
+              "Apenas chaves estrangeiras",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A 2FN é relevante para tabelas com chave primária composta, onde os atributos não-chave devem depender totalmente da chave primária, não apenas de parte dela.",
+          },
+          {
+            categoria: "Terceira Forma Normal",
+            dificuldade: 3,
+            icone: "fas fa-sitemap",
+            pergunta:
+              "Na Terceira Forma Normal (3FN), o que deve ser eliminado?",
+            opcoes: [
+              "Chaves primárias",
+              "Dependências transitivas",
+              "Chaves estrangeiras",
+              "Atributos obrigatórios",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "A 3FN elimina dependências transitivas, onde atributos não-chave dependem de outros atributos não-chave ao invés de depender diretamente da chave primária.",
+          },
+          {
+            categoria: "Restrições de Integridade",
+            dificuldade: 2,
+            icone: "fas fa-shield-alt",
+            pergunta:
+              "Qual restrição garante que não existam valores repetidos em atributos como CPF?",
+            opcoes: ["NOT NULL", "UNIQUE", "CHECK", "DEFAULT"],
+            respostaCorreta: 1,
+            explicacao:
+              "A restrição UNIQUE garante a ausência de valores repetidos, sendo utilizada para chaves candidatas como CPF, garantindo a integridade dos dados.",
+          },
+          {
+            categoria: "Chaves",
+            dificuldade: 2,
+            icone: "fas fa-puzzle-piece",
+            pergunta:
+              "Uma chave composta normalmente deriva de qual tipo de relacionamento?",
+            opcoes: [
+              "1:1 (um para um)",
+              "1:N (um para muitos)",
+              "N:N (muitos para muitos)",
+              "Relacionamento recursivo",
+            ],
+            respostaCorreta: 2,
+            explicacao:
+              "Chaves compostas normalmente derivam de relacionamentos N:N, onde é necessário criar uma entidade associativa que agrega as chaves primárias das entidades relacionadas.",
+          },
+          {
+            categoria: "Modelo Físico",
+            dificuldade: 2,
+            icone: "fas fa-database",
+            pergunta:
+              "No modelo físico, quais limitações devem ser consideradas?",
+            opcoes: [
+              "Limitações do usuário final",
+              "Limitações do SGBD escolhido",
+              "Limitações de hardware apenas",
+              "Limitações de software apenas",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "No modelo físico deve-se levar em consideração as limitações específicas do SGBD escolhido (MySQL, Oracle, SQL Server, etc.) para implementação.",
+          },
+          {
+            categoria: "Modelagem Dimensional",
+            dificuldade: 3,
+            icone: "fas fa-cube",
+            pergunta:
+              "Na modelagem dimensional, qual é a principal diferença entre dimensões e fatos?",
+            opcoes: [
+              "Dimensões são numéricas, fatos são textuais",
+              "Dimensões são textuais descritivas, fatos são medidas numéricas",
+              "Não há diferença entre eles",
+              "Dimensões são maiores que fatos",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "Dimensões contêm atributos descritivos (dados textuais) que classificam os fatos, enquanto fatos contêm medidas numéricas do negócio que podem ser agregadas.",
+          },
+          {
+            categoria: "Schemas Dimensionais",
+            dificuldade: 2,
+            icone: "fas fa-star",
+            pergunta:
+              "No modelo Star Schema, como as dimensões se relacionam com a tabela fato?",
+            opcoes: [
+              "Indiretamente através de outras dimensões",
+              "Diretamente com a tabela fato",
+              "Não há relacionamento",
+              "Apenas através de chaves compostas",
+            ],
+            respostaCorreta: 1,
+            explicacao:
+              "No Star Schema, todas as dimensões se relacionam diretamente com a tabela fato, formando uma estrutura em estrela. As dimensões não são normalizadas.",
+          },
+          {
+            categoria: "SQL",
+            dificuldade: 1,
+            icone: "fas fa-code",
+            pergunta:
+              "A linguagem SQL é dividida em quantas categorias principais?",
+            opcoes: [
+              "3 categorias",
+              "4 categorias",
+              "5 categorias",
+              "6 categorias",
+            ],
+            respostaCorreta: 2,
+            explicacao:
+              "O SQL é dividido em 5 categorias: DDL (Definição), DML (Manipulação), DQL (Consulta), DCL (Controle) e DTL (Transação).",
+          },
+          {
+            categoria: "SQL - DQL",
+            dificuldade: 1,
+            icone: "fas fa-search",
+            pergunta:
+              "Qual comando SQL pertence à categoria DQL (Data Query Language)?",
+            opcoes: ["INSERT", "UPDATE", "SELECT", "CREATE"],
+            respostaCorreta: 2,
+            explicacao:
+              "O comando SELECT pertence à DQL e é usado para consultar dados. É provavelmente o comando mais utilizado no SQL.",
+          },
+          {
+            categoria: "Dialetos SQL",
+            dificuldade: 2,
+            icone: "fas fa-language",
+            pergunta: "Qual dialeto SQL é utilizado pelo Oracle e MySQL?",
+            opcoes: ["T-SQL", "PL/SQL", "SQL/PL", "PL/pgSQL"],
+            respostaCorreta: 1,
+            explicacao:
+              "PL/SQL é a linguagem de programação utilizada pelo Oracle e MySQL para desenvolvimento de códigos mais avançados como procedures e triggers.",
+          },
+        ],
+      };
+
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return { tema };
+        },
+        components: { QuizInterativo: window.QuizInterativo },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

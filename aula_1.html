@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentos de Banco de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="markdownProcessor.js"></script>
+    <script src="aula-component.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <aula-interativa :disciplina="disciplina"></aula-interativa>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      const disciplina = {
+        nome: "Fundamentos de Banco de Dados",
+        icone: "fas fa-database",
+        professores:
+          "Prof. Ricardo Sonaglio Albano & Profª. Silvie Guedes Albano",
+        footer: "Material interativo desenvolvido para facilitar o aprendizado",
+        temas: [
+          {
+            titulo: "Introdução",
+            icone: "fas fa-home",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-blue-500 to-purple-600",
+            },
+            subtitulo: "Bem-vindo ao Mundo dos Bancos de Dados! 🚀",
+            descricao:
+              "Prepare-se para uma jornada incrível pelo universo dos dados! Aqui você aprenderá desde os conceitos mais básicos até as técnicas avançadas de modelagem.",
+            tags: ["Introdução", "Conceitos", "Fundamentos"],
+            secoes: [
+              {
+                titulo: "Objetivo do Curso",
+                icone: "fas fa-target",
+                conteudo: [
+                  `[grid:md:grid-cols-2]
+                 lightbulb:blue:**O que você vai aprender?**:• Conceitos fundamentais de BD\n• Modelagem de dados\n• Linguagem SQL\n• Melhores práticas|
+                 star:green:**Por que é importante?**:Essencial para qualquer profissional de TI:Praticamente todas as informações do mundo digital estão armazenadas em bancos de dados. Dominar essa tecnologia é essencial!
+                 [/grid]`,
+
+                  `[destaque:yellow]⚠️ Dica Importante|Desenvolver uma base conceitual sólida sobre Banco de Dados será fundamental para sua carreira. Esses conceitos você utilizará frequentemente no dia a dia profissional![/destaque]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Conceitos e Definições",
+            icone: "fas fa-book",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-green-500 to-blue-600",
+            },
+            subtitulo: "Conceitos, Definições e Modelos",
+            descricao:
+              "Vamos entender a diferença fundamental entre dados e informação, além dos principais modelos de banco de dados.",
+            secoes: [
+              {
+                titulo: "Dados vs Informação",
+                icone: "fas fa-balance-scale",
+                conteudo: [
+                  `[destaque:gradient_blue]🧩 Pense assim: É como uma receita de bolo!|Vamos usar uma analogia simples para entender essa diferença fundamental.[/destaque]`,
+
+                  `[grid:md:grid-cols-2]
+                 puzzle-piece:orange:**📊 DADOS (Ingredientes)**:2 + 5 = ?:Ingredientes separados, sem significado conjunto. São fatos em sua forma primária.|
+                 lightbulb:green:**💡 INFORMAÇÃO (Bolo Pronto)**:7:Resultado processado com significado. Dados organizados que geram conhecimento.
+                 [/grid]`,
+                ],
+              },
+              {
+                titulo: "O que é um Banco de Dados?",
+                icone: "fas fa-database",
+                conteudo: [
+                  `[grid:md:grid-cols-3]
+                 warehouse:purple:**Armazém Digital**:Local onde guardamos informações organizadamente|
+                 link:blue:**Dados Relacionados**:Informações conectadas de forma inteligente|
+                 users:green:**Acesso Compartilhado**:Múltiplos usuários podem acessar simultaneamente
+                 [/grid]`,
+
+                  `[destaque:gradient_purple]🍕 Exemplo Prático: Sistema de Delivery|Imagine um app de delivery como o iFood. Ele precisa armazenar informações sobre clientes, produtos, entregadores e restaurantes.|Todas essas informações estão interligadas em um banco de dados único.[/destaque]`,
+                ],
+              },
+              {
+                titulo: "Modelos de Banco de Dados",
+                icone: "fas fa-project-diagram",
+                conteudo: [
+                  `[exp:tree]**Modelo Hierárquico**|Década de 1960|Dados organizados em estrutura de árvore, com relações pai-filho.|Sistema de arquivos do Windows: pastas dentro de pastas|Simples e eficiente para consultas hierárquicas|Rígido, difícil de modificar estrutura[/exp]`,
+
+                  `[exp:network-wired]**Modelo de Rede**|Décadas de 1960-1970|Extensão do hierárquico, permite múltiplas relações pai-filho.|Rede de computadores onde um nó pode se conectar a vários outros|Mais flexível que o hierárquico|Ainda complexo para manutenção[/exp]`,
+
+                  `[exp:table]**Modelo Relacional**|Década de 1970|Dados organizados em tabelas relacionadas entre si.|Planilhas do Excel conectadas entre si por colunas em comum|Flexível, padronizado, amplamente usado|Pode ser lento para grandes volumes[/exp]`,
+
+                  `[exp:cube]**Modelo Orientado a Objetos**|Década de 1980|Incorpora conceitos de programação orientada a objetos.|Linguagens como Java aplicadas ao banco de dados|Suporte a dados complexos|Complexidade de implementação[/exp]`,
+
+                  `[exp:database]**Modelo NoSQL**|Século XXI|Modelos não-relacionais para big data e aplicações web.|MongoDB, Redis, Cassandra para redes sociais e big data|Escalável, flexível para dados não estruturados|Menos maduro, consistência eventual[/exp]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "SGBD",
+            icone: "fas fa-cogs",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-purple-500 to-pink-600",
+            },
+            subtitulo: "Sistema Gerenciador de Banco de Dados",
+            descricao:
+              "Entenda o que é um SGBD e por que ele é essencial para gerenciar nossos dados.",
+            secoes: [
+              {
+                titulo: "O que é um SGBD?",
+                icone: "fas fa-lightbulb",
+                conteudo: [
+                  `[destaque:gradient_blue]🏨 Pense no SGBD como um Hotel de Luxo|O SGBD é como o recepcionista que organiza tudo, os dados ficam em 'quartos' (tabelas) e os usuários são os hóspedes.[/destaque]`,
+
+                  `[grid:md:grid-cols-3]
+                 concierge-bell:blue:**Recepcionista**:O SGBD organiza e controla tudo|
+                 bed:green:**Quartos**:Dados organizados em tabelas|
+                 users:purple:**Hóspedes**:Usuários que acessam as informações
+                 [/grid]`,
+                ],
+              },
+              {
+                titulo: "Características Essenciais",
+                icone: "fas fa-shield-alt",
+                conteudo: [
+                  `[grid:md:grid-cols-2]
+                 copy:blue:**Controle de Redundância**:Evita duplicação desnecessária de dados:Dados do cliente ficam apenas na tabela Cliente, não espalhados por todo o sistema.|
+                 users:green:**Compartilhamento**:Múltiplos usuários acessam simultaneamente:Vários funcionários consultando estoque ao mesmo tempo sem conflitos.|
+                 shield-alt:red:**Controle de Acesso**:Define quem pode acessar cada dado:Vendedor vê apenas produtos, não informações de salários dos funcionários.|
+                 save:purple:**Backup e Recuperação**:Garante restauração em caso de falhas:Backup automático diário dos dados importantes com recuperação rápida.
+                 [/grid]`,
+                ],
+              },
+              {
+                titulo: "SGBDs Populares",
+                icone: "fas fa-trophy",
+                conteudo: [
+                  `[grid:md:grid-cols-3]
+                 database:blue:**MySQL**:Oracle - Gratuito|
+                 database:blue:**PostgreSQL**:Comunidade - Gratuito|
+                 database:red:**Oracle**:Oracle Corp - Comercial|
+                 database:blue:**SQL Server**:Microsoft - Comercial|
+                 database:green:**MongoDB**:MongoDB Inc - Ambos|
+                 database:gray:**SQLite**:D. R. Hipp - Gratuito
+                 [/grid]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Modelagem de Dados",
+            icone: "fas fa-drafting-compass",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-amber-500 to-orange-500",
+            },
+            subtitulo: "Como projetar um banco de dados",
+            descricao:
+              "A modelagem é fundamental para o sucesso de qualquer projeto de banco de dados.",
+            secoes: [
+              {
+                titulo: "Analogia da Construção",
+                icone: "fas fa-hammer",
+                conteudo: [
+                  `[destaque:gradient_yellow]🏗️ Modelagem é como construir uma casa|Assim como construir uma casa, a modelagem de dados segue etapas bem definidas.[/destaque]`,
+
+                  `[grid:md:grid-cols-3]
+                 drafting-compass:blue:**Projeto (Conceitual)**:Planta da casa - visão geral|
+                 ruler-combined:green:**Detalhamento (Lógico)**:Medidas e especificações|
+                 home:orange:**Construção (Físico)**:Casa real construída
+                 [/grid]`,
+                ],
+              },
+              {
+                titulo: "Etapas do Projeto",
+                icone: "fas fa-list-ol",
+                conteudo: [
+                  `[exp:search]**1. Análise de Requisitos**||Levantamento das necessidades e regras de negócio através de entrevistas e documentação.|Entrevistar usuários, documentar regras, identificar dados necessários.[/exp]`,
+
+                  `[exp:lightbulb]**2. Modelo Conceitual**||Visão de alto nível, independente de tecnologia, focando em entidades e relacionamentos.|Diagrama ER mostrando Cliente, Produto, Pedido e seus relacionamentos.[/exp]`,
+
+                  `[exp:cog]**3. Modelo Lógico**||Considera limitações do tipo de SGBD, define chaves e aplica normalização.|Definir que Cliente_ID é chave primária, aplicar 3FN.[/exp]`,
+
+                  `[exp:database]**4. Modelo Físico**||Implementação específica no SGBD escolhido com scripts SQL e otimizações.|CREATE TABLE Cliente (id INT PRIMARY KEY, nome VARCHAR(100));[/exp]`,
+                ],
+              },
+              {
+                titulo: "Regras de Negócio",
+                icone: "fas fa-gavel",
+                conteudo: [
+                  `[destaque:yellow]📜 Regras de Negócio|Todo projeto é guiado pelas regras de negócio! Elas são as 'leis' que governam como a empresa funciona.|Para se matricular em curso superior, aluno deve apresentar certificado do Ensino Médio.[/destaque]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "MER",
+            icone: "fas fa-sitemap",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-teal-500 to-cyan-600",
+            },
+            subtitulo: "Modelo Entidade-Relacionamento",
+            descricao:
+              "Componentes fundamentais do MER: entidades, atributos e relacionamentos.",
+            secoes: [
+              {
+                titulo: "Componentes Principais",
+                icone: "fas fa-puzzle-piece",
+                conteudo: [
+                  `[grid:md:grid-cols-3]
+                 cube:blue:**📦 ENTIDADE**:Representa um 'objeto' do mundo real:Exemplos: Cliente 👤, Produto 📦, Pedido 🛒|
+                 tag:green:**🏷️ ATRIBUTO**:Características que descrevem uma entidade:Cliente tem: Nome, CPF, Endereço|
+                 link:purple:**🔗 RELACIONAMENTO**:Conexão entre duas ou mais entidades:Exemplo: Cliente → faz → Pedido
+                 [/grid]`,
+                ],
+              },
+              {
+                titulo: "Tipos de Chaves",
+                icone: "fas fa-key",
+                conteudo: [
+                  `[destaque:gradient_yellow]🔑 Chave Primária (Primary Key - PK)|É como o RG de uma pessoa - único e intransferível! Identifica exclusivamente cada registro.|Características: Nunca se repete, nunca pode ser nulo, preferencialmente numérico, não pode ser alterado.[/destaque]`,
+
+                  `[destaque:gradient_purple]🔗 Chave Estrangeira (Foreign Key - FK)|É como o endereço de uma pessoa - faz referência a onde ela mora! Conecta tabelas diferentes.|Características: É sempre PK de outra tabela, pode se repetir, cria relacionamentos, garante integridade.[/destaque]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Cardinalidade",
+            icone: "fas fa-arrows-alt",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-indigo-500 to-blue-600",
+            },
+            subtitulo: "Relacionamentos entre entidades",
+            descricao:
+              "Como as entidades se relacionam em um banco de dados - tipos de cardinalidade.",
+            secoes: [
+              {
+                titulo: "Conceito de Cardinalidade",
+                icone: "fas fa-heart",
+                conteudo: [
+                  `[destaque:gradient_blue]💕 Cardinalidade é como relacionamentos humanos!|Assim como pessoas têm diferentes tipos de relacionamentos, as entidades também se relacionam de formas diferentes.|A cardinalidade define quantas instâncias de uma entidade podem se relacionar com quantas de outra.[/destaque]`,
+                ],
+              },
+              {
+                titulo: "Tipos de Cardinalidade",
+                icone: "fas fa-sitemap",
+                conteudo: [
+                  `[exp:ring]**💑 Um para Um (1:1) - Relacionamento Exclusivo**||No Brasil, uma pessoa só pode estar casada legalmente com uma outra pessoa ao mesmo tempo.|Pessoa ↔ Cônjuge: UMA pessoa tem UM cônjuge e UM cônjuge pertence a UMA pessoa.|Relacionamento único e exclusivo|Chave estrangeira pode ir em qualquer uma das tabelas[/exp]`,
+
+                  `[exp:users]**👨‍👧‍👦 Um para Muitos (1:N) - Relacionamento Hierárquico**||Um pai pode ter vários filhos, mas cada filho tem apenas um pai. A chave estrangeira fica no lado N.|Cidade → Cliente: UMA cidade tem MUITOS clientes, mas UM cliente mora em UMA cidade.|Relacionamento mais comum nos bancos relacionais|Chave estrangeira sempre vai na tabela do lado 'MUITOS' (N)[/exp]`,
+
+                  `[exp:network-wired]**👥 Muitos para Muitos (N:N) - Relacionamento Complexo**||Um ator pode participar de vários filmes, e um filme pode ter vários atores. Precisa de entidade associativa.|Cliente ↔ Conta: UM cliente pode ter VÁRIAS contas e UMA conta pode ter VÁRIOS clientes (conta conjunta).|Permite relacionamentos complexos|Sempre gera uma nova tabela associativa[/exp]`,
+                ],
+              },
+              {
+                titulo: "Onde ficam as chaves?",
+                icone: "fas fa-key",
+                conteudo: [
+                  `[interativo:toggle:mostrarChaves]🔍 Visualizar Regras de Chaves|👀 Mostrar Regras|👁️ Ocultar Regras|
+                 <div class="space-y-4">
+                   <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                     <h5 class="font-bold text-yellow-800">🔑 1:1 - Chave pode ir em qualquer lado</h5>
+                     <p class="text-yellow-700 text-sm">Pessoa ← chave_conjuge → Cônjuge</p>
+                   </div>
+                   <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                     <h5 class="font-bold text-green-800">🔗 1:N - Chave vai no lado N</h5>
+                     <p class="text-green-700 text-sm">Cidade (1) → Cliente (N + chave_cidade)</p>
+                   </div>
+                   <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                     <h5 class="font-bold text-purple-800">🔀 N:N - Nova tabela associativa</h5>
+                     <p class="text-purple-700 text-sm">Cliente ↔ ClienteConta (chave_cliente + chave_conta) ↔ Conta</p>
+                   </div>
+                 </div>
+                 [/interativo]`,
+                ],
+              },
+            ],
+          },
+          {
+            titulo: "Estudo de Caso",
+            icone: "fas fa-utensils",
+            cabecalho: {
+              cor: "bg-gradient-to-r from-orange-400 to-red-500",
+            },
+            subtitulo: "Sistema de Delivery 'Comer é Bom Demais'",
+            descricao:
+              "Aplicando todos os conceitos em um projeto real de sistema de delivery.",
+            secoes: [
+              {
+                titulo: "Apresentação do Caso",
+                icone: "fas fa-store",
+                conteudo: [
+                  `[destaque:gradient_red]🍕 Restaurante 'Comer é Bom Demais'|Vamos acompanhar passo a passo o desenvolvimento de um sistema de delivery completo, aplicando todos os conceitos aprendidos.|Objetivo: Criar um banco de dados para gerenciar pedidos, clientes, produtos, entregadores e restaurantes.[/destaque]`,
+                ],
+              },
+              {
+                titulo: "Entidades Identificadas",
+                icone: "fas fa-cubes",
+                conteudo: [
+                  `[grid:md:grid-cols-4]
+                 user:blue:**Cliente**:Pessoas que fazem pedidos|
+                 store:green:**Restaurante**:Filiais da rede|
+                 hamburger:orange:**Produto**:Itens do cardápio|
+                 shopping-cart:purple:**Pedido**:Solicitações de compra|
+                 motorcycle:red:**Entregador**:Responsáveis pela entrega|
+                 user-tie:gray:**Funcionário**:Equipe dos restaurantes|
+                 city:indigo:**Cidade**:Localização geográfica|
+                 map:teal:**Estado**:Unidades federativas
+                 [/grid]`,
+                ],
+              },
+              {
+                titulo: "Regras de Negócio",
+                icone: "fas fa-list-check",
+                conteudo: [
+                  `[lista:clipboard-list]**📋 Principais Regras**|O restaurante possui várias filiais espalhadas pelo território nacional|Pode ter mais de uma filial na mesma cidade|Para fazer pedido, o cliente deve estar previamente cadastrado|Os pedidos são entregues por entregadores autônomos|Produtos são organizados por categoria no aplicativo|Entregadores devem ter carteira de habilitação registrada|Acesso ao app é feito por login e senha (e-mail)|Os pedidos possuem status de acompanhamento|O restaurante possui vários funcionários|Restaurante oferece desconto para aniversariantes[/lista]`,
+                ],
+              },
+              {
+                titulo: "Resultado Final",
+                icone: "fas fa-check-circle",
+                conteudo: [
+                  `[destaque:green]✅ Modelo Conceitual Completo|Modelo conceitual foi desenvolvido aplicando todos os conceitos estudados: entidades, relacionamentos, cardinalidades e regras de negócio.[/destaque]`,
+
+                  `[grid:md:grid-cols-2]
+                 bullseye:green:**🎯 Objetivos Alcançados**:Todas as metas do projeto foram atingidas:✓ Todas as entidades identificadas\n✓ Relacionamentos definidos\n✓ Cardinalidades aplicadas\n✓ Chaves estrangeiras posicionadas\n✓ Regras de negócio atendidas|
+                 rocket:blue:**🚀 Próximos Passos**:Continuidade do desenvolvimento:→ Converter para modelo lógico\n→ Definir tipos de dados\n→ Aplicar normalização\n→ Criar modelo físico\n→ Implementar em SQL
+                 [/grid]`,
+
+                  `[interativo:toggle:mostrarDiagrama]🎨 Visualizar Diagrama ER|👀 Mostrar Diagrama|👁️ Ocultar Diagrama|
+                 <div class="bg-white p-6 rounded-lg border">
+                   <h5 class="font-bold text-gray-800 mb-4 text-center">Diagrama Entidade-Relacionamento</h5>
+                   <div class="text-center space-y-4">
+                     <div class="flex justify-center items-center space-x-8 flex-wrap">
+                       <div class="bg-blue-500 text-white px-4 py-2 rounded font-bold">CLIENTE</div>
+                       <div class="text-sm text-gray-600">mora em</div>
+                       <div class="bg-green-500 text-white px-4 py-2 rounded font-bold">CIDADE</div>
+                     </div>
+                     <div class="text-xs text-red-600 font-bold">(N:1)</div>
+                     
+                     <div class="flex justify-center items-center space-x-8 flex-wrap">
+                       <div class="bg-blue-500 text-white px-4 py-2 rounded font-bold">CLIENTE</div>
+                       <div class="text-sm text-gray-600">faz</div>
+                       <div class="bg-purple-500 text-white px-4 py-2 rounded font-bold">PEDIDO</div>
+                     </div>
+                     <div class="text-xs text-red-600 font-bold">(1:N)</div>
+                     
+                     <div class="flex justify-center items-center space-x-8 flex-wrap">
+                       <div class="bg-purple-500 text-white px-4 py-2 rounded font-bold">PEDIDO</div>
+                       <div class="text-sm text-gray-600">contém</div>
+                       <div class="bg-orange-500 text-white px-4 py-2 rounded font-bold">PRODUTO</div>
+                     </div>
+                     <div class="text-xs text-red-600 font-bold">(N:N - Tabela: ITEM_PEDIDO)</div>
+                     
+                     <div class="flex justify-center items-center space-x-8 flex-wrap">
+                       <div class="bg-green-500 text-white px-4 py-2 rounded font-bold">CIDADE</div>
+                       <div class="text-sm text-gray-600">pertence a</div>
+                       <div class="bg-teal-500 text-white px-4 py-2 rounded font-bold">ESTADO</div>
+                     </div>
+                     <div class="text-xs text-red-600 font-bold">(N:1)</div>
+                     
+                     <div class="flex justify-center items-center space-x-8 flex-wrap">
+                       <div class="bg-red-500 text-white px-4 py-2 rounded font-bold">ENTREGADOR</div>
+                       <div class="text-sm text-gray-600">entrega</div>
+                       <div class="bg-purple-500 text-white px-4 py-2 rounded font-bold">PEDIDO</div>
+                     </div>
+                     <div class="text-xs text-red-600 font-bold">(1:N)</div>
+                   </div>
+                 </div>
+                 [/interativo]`,
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      // Certifica que o markdownProcessor está disponível
+      if (!window.markdownProcessor) {
+        console.error("markdownProcessor não foi carregado");
+      }
+
+      // Certifica que o componente está disponível
+      if (!window.AulaInterativa) {
+        console.error("AulaInterativa não foi carregado");
+      }
+
+      createApp({
+        data() {
+          return { disciplina };
+        },
+        components: {
+          "aula-interativa": window.AulaInterativa,
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
